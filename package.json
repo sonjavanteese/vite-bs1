@@ -1,0 +1,38 @@
+{
+  "name": "vite-svelte-starter",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.0.2",
+    "bootstrap": "^5.2.0",
+    "mdsvex": "^0.10.6",
+    "sass": "^1.53.0",
+    "svelte": "^3.55.1",
+    "svelte-preprocess": "^4.10.7",
+    "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.7.0",
+    "svelte-spa-router": "^3.3.0",
+    "sveltestrap": "^5.10.0"
+  },
+  "description": "[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/vitejs-vite-ufmz2t)",
+  "main": "mdsvex.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonjavanteese/vite-bs1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sonjavanteese/vite-bs1/issues"
+  },
+  "homepage": "https://github.com/sonjavanteese/vite-bs1#readme"
+}

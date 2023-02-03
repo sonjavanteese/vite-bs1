@@ -1,0 +1,47 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+
+
+
+@import 'bs'; 
+
+body {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  --appbar-hight: 56px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  > main {
+    flex: 1;
+    position: relative;
+    width: 100%;
+/*     > section {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      overflow-x: hidden;
+    } */
+  }
+}
+
+// @import 'typl';
+// @import 'util';
