@@ -1,21 +1,11 @@
 <script>
   import { fade, fly } from "svelte/transition";
-  import Container from "sveltestrap/src/Container.svelte";
   export let op_fade = { duration: 400 };
   export let op_fly = { x: 300, duration: 1000 };
-  export let test = false;
-  export let body = false;
-  export let fluid = false;
 </script>
 
-<section class:test in:fade={op_fade}>
-  {#if body}
-    <Container {fluid} {...$$restProps}>
-      <slot />
-    </Container>
-  {:else}
+<section {...$$restProps} in:fade={op_fade}>
     <slot />
-  {/if}
 </section>
 
 <style>
@@ -29,8 +19,5 @@
     width: 100%;
     overflow-x: hidden;
     background-color: var(--bg);
-  }
-  .test {
-    border: 1px solid red;
   }
 </style>

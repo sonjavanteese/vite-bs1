@@ -1,51 +1,53 @@
 <script>
-  import BsList from './lib/bs/BsList.svelte';
-  import BsItem from './lib/bs//BsItem.svelte';
-  import Appbar from './lib/bs/Appbar.svelte'
-  import Sidebar from './lib/bs/Sidebar.svelte';
-  import Spacer from './lib/bs/Spacer.svelte'
-  const navData = [{"path":"/","name":"Start"},{"path":"/game","name":"Game"},{"path":"/settings","name":"Settings"}];
-  import Router from 'svelte-spa-router'
-  import routes from './routes/routes'
-  import {NavbarToggler, Button} from 'sveltestrap';
-  
-  import { ListGroup, ListGroupItem } from 'sveltestrap';
-
+  import {
+    List,
+    ListItem,
+    AppBar,
+    SideBar,
+    Spacer,
+    Auth,
+    SignOut,
+  } from "./lib/bs";
+  const navData = [
+    { path: "/", name: "Start" },
+    { path: "/game", name: "Game" },
+    { path: "/user", name: "User" },
+    { path: "/settings", name: "Settings" },
+  ];
+  import Router from "svelte-spa-router";
+  import routes from "./routes/routes";
   let open;
- const openSb = () => {
-     open = true;
- };
+  const openSb = () => {
+    open = true;
+  };
 </script>
 
 
-<Sidebar bind:open let:toggle dark>
-  <Spacer />
-    <nav class="d-flex flex-column">
-      {#each navData as item, i}
 
-         <button class="list-button text-bg-dark">
-          <span>{item.name}</span>
-          <span class="badge rounded-pill text-bg-secondary">{i+1}</span>
-          </button>
-          
-      {/each}
-      </nav>
-   <Spacer />
+<SideBar bind:open let:toggle>
+  <List flush>
+    {#each navData as { path, name }, i}
+      <ListItem href="#{path}" on:click={toggle}>
+        {name}
+        <span slot="right" class="badge bg-secondary rounded-pill">{i + 1}</span
+        >
+      </ListItem>
+    {/each}
+  </List>
   <svelte:fragment slot="footer">
-		<Button color="danger" on:click={toggle} block>Close</Button>
-	</svelte:fragment>
-</Sidebar>
-
-<Appbar {openSb} />
-
-<main>
-    <Router {routes}/>
-</main>
+    <SignOut>
+      <div class="d-grid gap-2">
+        <button type="button" class="btn btn-danger" on:click={toggle}>Logout</button>
+      </div>
+    </SignOut>
+  </svelte:fragment>
+</SideBar>
 
 
 
-<style>
-  .list-button {
-    
-  }
-</style>
+<Auth>
+  <AppBar {openSb} />
+  <main>
+    <Router {routes} />
+  </main>
+</Auth>

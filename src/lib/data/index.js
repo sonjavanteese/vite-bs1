@@ -4,7 +4,7 @@
 // @endindex
 // @index(['./stores/**/*.js'], f => ` export { ${f.name} } from '${f.path}';`)
  // export { _op } from './stores/_op';
- export { _profile } from './stores/_profile';
+ // export { _profile } from './stores/_profile';
  // export { _session } from './stores/_session';
  // export { _settings } from './stores/_settings';
  export { _user } from './stores/_user';
