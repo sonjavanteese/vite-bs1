@@ -1,47 +1,46 @@
 <script>
+  import Jedit from './Jedit.svelte';
+  import DataFetch from "./DataFetch.svelte";
+  import { _pages, _currentPage } from "./storeData";
+  import { Spacer } from "../lib/bs";
   import Page from "../lib/bs/Page.svelte";
-  let label = "Svelte 2";
-  let daten = [];
-  let details = [];
-  const fetchDetail = (id = 0) => {
-    fetch("https://nwp-cgn.de/apis/carmen/" + id)
-      .then((r) => r.json())
-      .then((d) => {
-        if (d) {
-          details = d.data1;
-          console.log("FETCH Details", daten);
-        }
-      });
-  };
-  const fetchData = () => {
-    fetch("https://nwp-cgn.de/apis/carmen")
-      .then((r) => r.json())
-      .then((d) => {
-        if (d) {
-          daten = d.data1;
-          console.log("FETCH", daten);
-        }
-      });
-  };
+  import { onMount } from "svelte";
+  let label = "Settings";
+  let editHolder;
 
-  fetchData();
+  console.log(`${label} init!`);
+  onMount(() => {
+    console.log(`${label} mounted!`);
+  });
 </script>
 
-<Page body class="py-5">
-  <header class="flex items-center justify-around">
-    <h1 class="display-4">{label}</h1>
-  </header>
-  {#if daten.length}
-    Daten OK
-    {#each daten as el}
-      <button on:click={() => fetchDetail(el.id)}>ID {el.id}</button>
-    {/each}
-  {/if}
-  {#if details.length}
-    Details OK
+<Page body class="py-4">
+  <Jedit></Jedit>
 
-    {#each details as el}
-      <button class="btn btn-light fs-1">ID {el.id}</button>
-    {/each}
-  {/if}
+  <DataFetch let:payload>
+    <div class="container-fluid">
+      <header class="flex items-center justify-around">
+        <h1 class="display-4">{label}</h1>
+      </header>
+
+      <section>
+        <Spacer />
+        <nav class="list-group list-group-flush">
+          {#each payload as { pageType, imgUrl, storyText, choice1, choice2, choice1Text, choice2Text, pageTitel, videoUrl, audioUrl, daten, op1, page }, i}
+            <button class="list-group-item list-group-item-action flex-column">
+              <div
+                class="d-flex w-100 justify-content-between align-items-start"
+              >
+                <h4 class="mb-1">Page {page}</h4>
+                <small class="text-muted badge">{page + 1}</small>
+              </div>
+              <p class="mb-1">{choice1Text}</p>
+              <small class="text-muted">next: {choice1}</small>
+            </button>
+          {/each}
+        </nav>
+        <Spacer />
+      </section>
+    </div>
+  </DataFetch>
 </Page>
